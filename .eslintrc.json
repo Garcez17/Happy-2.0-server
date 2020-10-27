@@ -19,8 +19,20 @@
       "prettier"
   ],
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-     "import/extensions": [
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "no-useless-constructor":"off",
+    "import/extensions": [
       "error",
       "ignorePackages",
       {
@@ -31,9 +43,7 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      "typescript": {}
     }
   }
 }
