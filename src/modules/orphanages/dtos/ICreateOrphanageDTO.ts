@@ -1,7 +1,7 @@
 export default interface ICreateOrphanageDTO {
   name: string;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   about: string;
   instructions: string;
   opening_hours: string;

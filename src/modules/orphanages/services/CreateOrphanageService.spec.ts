@@ -16,14 +16,12 @@ describe('CreateOrphanages', () => {
       name: 'Orfanato nova esperança',
       about: 'Sobre',
       instructions: 'Venha sorrindo',
-      latitude: 12.341256,
-      longitude: 12.323456,
+      latitude: '12.341256',
+      longitude: '12.323456',
       open_on_weekends: true,
       available: false,
       opening_hours: '06h às 17:00',
     });
-
-    console.log(orphanage);
 
     expect(orphanage).toHaveProperty('id');
   });

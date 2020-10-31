@@ -11,12 +11,22 @@ class OrphanagesRepository implements IOrphanagesRepository {
     this.ormRepository = getRepository(Orphanage);
   }
 
+  public async findById(id: string): Promise<Orphanage | undefined> {
+    const orphanage = await this.ormRepository.findOne(id);
+
+    return orphanage;
+  }
+
   public async create(data: ICreateOrphanageDTO): Promise<Orphanage> {
     const orphanage = this.ormRepository.create(data);
 
     await this.ormRepository.save(orphanage);
 
     return orphanage;
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 

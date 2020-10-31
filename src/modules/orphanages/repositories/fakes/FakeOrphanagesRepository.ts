@@ -8,6 +8,14 @@ import Orphanage from '@modules/orphanages/infra/typeorm/entities/Orphanage';
 class OrphanagesRepository implements IOrphanagesRepository {
   private orphanages: Orphanage[] = [];
 
+  public async findById(id: string): Promise<Orphanage | undefined> {
+    const orphanage = this.orphanages.find(
+      findOrphanage => findOrphanage.id === id,
+    );
+
+    return orphanage;
+  }
+
   public async create(data: ICreateOrphanageDTO): Promise<Orphanage> {
     const orphanage = new Orphanage();
 
@@ -16,6 +24,14 @@ class OrphanagesRepository implements IOrphanagesRepository {
     this.orphanages.push(orphanage);
 
     return orphanage;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const findIndex = this.orphanages.findIndex(
+      findOrphanage => findOrphanage.id === id,
+    );
+
+    this.orphanages.splice(findIndex, 1);
   }
 }
 
