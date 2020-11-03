@@ -1,15 +1,21 @@
 import AppError from '@shared/errors/AppError';
+import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import FakeOrphanagesRepository from '../repositories/fakes/FakeOrphanagesRepository';
 import DeleteOrphanageService from './DeleteOrphanageService';
 
 let deleteOrphanage: DeleteOrphanageService;
+let fakeStorageProvider: FakeStorageProvider;
 let fakeOrphanagesRepository: FakeOrphanagesRepository;
 
 describe('DeleteOrphanage', () => {
   beforeEach(() => {
     fakeOrphanagesRepository = new FakeOrphanagesRepository();
+    fakeStorageProvider = new FakeStorageProvider();
 
-    deleteOrphanage = new DeleteOrphanageService(fakeOrphanagesRepository);
+    deleteOrphanage = new DeleteOrphanageService(
+      fakeOrphanagesRepository,
+      fakeStorageProvider,
+    );
   });
 
   it('should be able to delete an orphanage', async () => {
@@ -24,6 +30,7 @@ describe('DeleteOrphanage', () => {
       open_on_weekends: true,
       available: false,
       opening_hours: '06h às 17:00',
+      images: [{ path: 'image.png' }, { path: 'image2.jpg' }],
     });
 
     await deleteOrphanage.execute({

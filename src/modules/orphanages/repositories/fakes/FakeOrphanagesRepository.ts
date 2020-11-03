@@ -33,6 +33,16 @@ class OrphanagesRepository implements IOrphanagesRepository {
 
     this.orphanages.splice(findIndex, 1);
   }
+
+  public async save(orphanage: Orphanage): Promise<Orphanage> {
+    const findIndex = this.orphanages.findIndex(
+      findUser => findUser.id === orphanage.id,
+    );
+
+    this.orphanages[findIndex] = orphanage;
+
+    return orphanage;
+  }
 }
 
 export default OrphanagesRepository;
