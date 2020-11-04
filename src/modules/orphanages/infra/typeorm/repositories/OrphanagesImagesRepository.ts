@@ -27,8 +27,6 @@ class OrphanagesRepository implements IOrphanagesImagesRepository {
       where: { path: file },
     });
 
-    console.log(fileId);
-
     await this.ormRepository.delete(fileId.id);
 
     return 'apagou!';
