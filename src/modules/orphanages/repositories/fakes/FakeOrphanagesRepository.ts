@@ -16,6 +16,22 @@ class OrphanagesRepository implements IOrphanagesRepository {
     return orphanage;
   }
 
+  public async findAllOrphanagesVailables(): Promise<Orphanage[]> {
+    const orphanages = this.orphanages.filter(
+      orphanage => orphanage.available === true,
+    );
+
+    return orphanages;
+  }
+
+  public async findAllOrphanagesNotVailables(): Promise<Orphanage[]> {
+    const orphanages = this.orphanages.filter(
+      orphanage => orphanage.available === false,
+    );
+
+    return orphanages;
+  }
+
   public async create(data: ICreateOrphanageDTO): Promise<Orphanage> {
     const orphanage = new Orphanage();
 
