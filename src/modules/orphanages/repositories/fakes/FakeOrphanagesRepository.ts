@@ -5,7 +5,7 @@ import IOrphanagesRepository from '@modules/orphanages/repositories/IOrphanagesR
 
 import Orphanage from '@modules/orphanages/infra/typeorm/entities/Orphanage';
 
-class OrphanagesRepository implements IOrphanagesRepository {
+class FakeOrphanagesRepository implements IOrphanagesRepository {
   private orphanages: Orphanage[] = [];
 
   public async findById(id: string): Promise<Orphanage | undefined> {
@@ -61,4 +61,4 @@ class OrphanagesRepository implements IOrphanagesRepository {
   }
 }
 
-export default OrphanagesRepository;
+export default FakeOrphanagesRepository;

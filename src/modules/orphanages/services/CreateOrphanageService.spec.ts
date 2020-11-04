@@ -1,17 +1,17 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import FakeOrphanagesRepository from '../repositories/fakes/FakeOrphanagesRepository';
-import CreateOrphanagesService from './CreateOrphanageService';
+import CreateOrphanageService from './CreateOrphanageService';
 
 let fakeOrphanagesRepository: FakeOrphanagesRepository;
 let fakeStorageProvider: FakeStorageProvider;
-let createOrphanage: CreateOrphanagesService;
+let createOrphanage: CreateOrphanageService;
 
-describe('CreateOrphanages', () => {
+describe('CreateOrphanage', () => {
   beforeEach(() => {
     fakeOrphanagesRepository = new FakeOrphanagesRepository();
     fakeStorageProvider = new FakeStorageProvider();
 
-    createOrphanage = new CreateOrphanagesService(
+    createOrphanage = new CreateOrphanageService(
       fakeOrphanagesRepository,
       fakeStorageProvider,
     );

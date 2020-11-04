@@ -7,7 +7,7 @@ let fakeOrphanagesRepository: FakeOrphanagesRepository;
 let fakeStorageProvider: FakeStorageProvider;
 let changeAvailabilityOrphanage: ChangeAvailabilityOrphanageService;
 
-describe('CreateOrphanages', () => {
+describe('ChangeAvailabilityOrphanage', () => {
   beforeEach(() => {
     fakeOrphanagesRepository = new FakeOrphanagesRepository();
     fakeStorageProvider = new FakeStorageProvider();

@@ -4,7 +4,7 @@ import Orphanage from '../infra/typeorm/entities/Orphanage';
 import IOrphanagesRepository from '../repositories/IOrphanagesRepository';
 
 @injectable()
-class CreateUserService {
+class ListOrphanagesNotVailablesService {
   constructor(
     @inject('OrphanagesRepository')
     private orphanagesRepository: IOrphanagesRepository,
@@ -17,4 +17,4 @@ class CreateUserService {
   }
 }
 
-export default CreateUserService;
+export default ListOrphanagesNotVailablesService;

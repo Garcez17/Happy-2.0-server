@@ -4,7 +4,7 @@ import IOrphanagesImagesRepository from '@modules/orphanages/repositories/IOrpha
 import Image from '../entities/Image';
 import Orphanage from '../entities/Orphanage';
 
-class OrphanagesRepository implements IOrphanagesImagesRepository {
+class OrphanagesImagesRepository implements IOrphanagesImagesRepository {
   private ormRepository: Repository<Image>;
 
   constructor() {
@@ -33,4 +33,4 @@ class OrphanagesRepository implements IOrphanagesImagesRepository {
   }
 }
 
-export default OrphanagesRepository;
+export default OrphanagesImagesRepository;

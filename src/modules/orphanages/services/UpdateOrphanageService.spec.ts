@@ -5,7 +5,7 @@ import UpdateOrphanageService from './UpdateOrphanageService';
 let updateOrphanage: UpdateOrphanageService;
 let fakeOrphanagesRepository: FakeOrphanagesRepository;
 
-describe('DeleteOrphanage', () => {
+describe('UpdateOrphanage', () => {
   beforeEach(() => {
     fakeOrphanagesRepository = new FakeOrphanagesRepository();
 
