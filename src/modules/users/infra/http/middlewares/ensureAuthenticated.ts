@@ -23,17 +23,17 @@ export default function ensureAuthenticated(
 
   const [, token] = authHeader.split(' ');
 
-  const decoded = verify(token, authConfig.jwt.secret);
+  try {
+    const decoded = verify(token, authConfig.jwt.secret);
 
-  if (!decoded) {
-    throw new AppError('Invalid token.');
+    const { sub } = decoded as ITokenPayload;
+
+    request.user = {
+      id: sub,
+    };
+
+    return next();
+  } catch {
+    throw new AppError('Invalid JWT token', 401);
   }
-
-  const { sub } = decoded as ITokenPayload;
-
-  request.user = {
-    id: sub,
-  };
-
-  return next();
 }
