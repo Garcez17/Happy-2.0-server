@@ -11,25 +11,32 @@ class OrphanagesImagesRepository implements IOrphanagesImagesRepository {
     this.ormRepository = getRepository(Image);
   }
 
-  public async create(path: string, orphanage: Orphanage): Promise<Image> {
-    const image = this.ormRepository.create({
-      orphanage,
-      path,
+  public async create(
+    files: Array<{
+      path: string;
+    }>,
+    orphanage: Orphanage,
+  ): Promise<void> {
+    files.map(async file => {
+      const image = this.ormRepository.create({
+        orphanage,
+        path: file.path,
+      });
+
+      return this.ormRepository.save(image);
     });
-
-    await this.ormRepository.save(image);
-
-    return image;
   }
 
-  public async delete(file: string): Promise<string> {
-    const fileId = await this.ormRepository.findOne({
-      where: { path: file },
+  public async delete(files: string[]): Promise<void> {
+    files.forEach(async file => {
+      const fileId = await this.ormRepository.findOne({
+        where: { path: file },
+      });
+
+      await this.ormRepository.delete(fileId.id);
+
+      return 'apagou!';
     });
-
-    await this.ormRepository.delete(fileId.id);
-
-    return 'apagou!';
   }
 }
 
