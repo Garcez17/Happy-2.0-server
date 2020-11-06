@@ -28,12 +28,22 @@ class SendForgotPasswordEmailService {
 
     if (!user) throw new AppError('user dosent exists');
 
-    await this.userTokensRepository.generate(user.id);
+    const { token } = await this.userTokensRepository.generate(user.id);
 
-    await this.mailProvider.sendMail(
-      user.email,
-      'Envio de email - Recuperação de senha',
-    );
+    await this.mailProvider.sendMail({
+      to: {
+        name: user.name,
+        email: user.email,
+      },
+      subject: '[Happy] Recuperação de senha',
+      templateData: {
+        template: 'Olá, {{name}}! Recuperação de senha solicitada: {{token}}',
+        variables: {
+          name: user.name,
+          token,
+        },
+      },
+    });
   }
 }
 
