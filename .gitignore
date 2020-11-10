@@ -5,3 +5,4 @@ coverage/
 tmp/*
 tmp/uploads/*
 !tmp/uploads
+ormconfig.json
