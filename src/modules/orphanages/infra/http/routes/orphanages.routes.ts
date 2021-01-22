@@ -24,6 +24,15 @@ orphanagesRouter.get(
   ensureAuthenticated,
   orphanageNotVailablesController.index,
 );
+orphanagesRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  orphanagesController.show,
+);
 
 orphanagesRouter.post(
   '/',

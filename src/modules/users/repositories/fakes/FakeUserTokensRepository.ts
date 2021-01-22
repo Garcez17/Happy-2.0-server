@@ -20,7 +20,6 @@ class FakeUsersRepository implements IUserTokensRepository {
 
     Object.assign(userToken, {
       id: v4(),
-      email: v4(),
       user_id,
       created_at: new Date(),
       updated_at: new Date(),
