@@ -9,6 +9,7 @@ interface IRequest {
   latitude: string;
   longitude: string;
   about: string;
+  whatsapp: string;
   instructions: string;
   opening_hours: string;
   open_on_weekends: boolean;

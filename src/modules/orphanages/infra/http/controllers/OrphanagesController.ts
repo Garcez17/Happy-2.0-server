@@ -28,6 +28,7 @@ class OrphanagesController {
       instructions,
       opening_hours,
       open_on_weekends,
+      whatsapp,
       available = false,
     } = request.body;
 
@@ -48,6 +49,7 @@ class OrphanagesController {
       open_on_weekends,
       available,
       images,
+      whatsapp,
     });
 
     return response.json(orphanage);
@@ -61,6 +63,7 @@ class OrphanagesController {
       latitude,
       longitude,
       about,
+      whatsapp,
       instructions,
       opening_hours,
       open_on_weekends,
@@ -74,6 +77,7 @@ class OrphanagesController {
       latitude,
       longitude,
       about,
+      whatsapp,
       instructions,
       opening_hours,
       open_on_weekends,

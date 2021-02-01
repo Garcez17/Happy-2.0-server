@@ -36,6 +36,7 @@ orphanagesRouter.get(
 
 orphanagesRouter.post(
   '/',
+  upload.array('images'),
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -47,7 +48,6 @@ orphanagesRouter.post(
       open_on_weekends: Joi.boolean().required(),
     },
   }),
-  upload.array('images'),
   orphanagesController.create,
 );
 

@@ -11,6 +11,7 @@ interface IRequest {
   latitude: string;
   longitude: string;
   about: string;
+  whatsapp: string;
   instructions: string;
   opening_hours: string;
   open_on_weekends: boolean;
@@ -31,6 +32,7 @@ class UpdateOrphanageService {
     about,
     instructions,
     opening_hours,
+    whatsapp,
     open_on_weekends,
   }: IRequest): Promise<Orphanage> {
     const orphanage = await this.orphanagesRepository.findById(id);
@@ -41,6 +43,7 @@ class UpdateOrphanageService {
     orphanage.latitude = latitude;
     orphanage.longitude = longitude;
     orphanage.about = about;
+    orphanage.whatsapp = whatsapp;
     orphanage.instructions = instructions;
     orphanage.opening_hours = opening_hours;
     orphanage.open_on_weekends = open_on_weekends;
