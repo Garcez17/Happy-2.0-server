@@ -30,9 +30,11 @@ class ChangeAvailabilityOrphanageService {
       return;
     }
 
-    const images = orphanage.images.map(image => image.path);
+    if (orphanage.images) {
+      const images = orphanage.images.map(image => image.path);
 
-    await this.storageProvider.deleteFile(images);
+      await this.storageProvider.deleteFile(images);
+    }
 
     await this.orphanagesRepository.delete(orphanage.id);
   }

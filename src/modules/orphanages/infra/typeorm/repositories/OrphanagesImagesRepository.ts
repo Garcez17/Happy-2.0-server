@@ -11,13 +11,21 @@ class OrphanagesImagesRepository implements IOrphanagesImagesRepository {
     this.ormRepository = getRepository(Image);
   }
 
+  public async findByOrphanageId(id: string): Promise<Image[]> {
+    const image = await this.ormRepository.find({
+      where: { orphanage: id },
+    });
+
+    return image;
+  }
+
   public async create(
     files: Array<{
       path: string;
     }>,
     orphanage: Orphanage,
   ): Promise<void> {
-    files.map(async file => {
+    files.forEach(async file => {
       const image = this.ormRepository.create({
         orphanage,
         path: file.path,

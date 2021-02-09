@@ -24,9 +24,11 @@ class DeleteOrphanageService {
 
     if (!orphanage) throw new AppError('orphanage not found.');
 
-    const images = orphanage.images.map(image => image.path);
+    if (orphanage.images) {
+      const images = orphanage.images.map(image => image.path);
 
-    await this.storageProvider.deleteFile(images);
+      await this.storageProvider.deleteFile(images);
+    }
     await this.orphanagesRepository.delete(id);
   }
 }
