@@ -8,9 +8,13 @@ import IOrphanagesRepository from '../repositories/IOrphanagesRepository';
 import IOrphanagesImagesRepository from '../repositories/IOrphanagesImagesRepository';
 // import Image from '../infra/typeorm/entities/Image';
 
+type Image = {
+  path: string;
+};
+
 interface IRequest {
   id: string;
-  oldImages: string[];
+  oldImages: string;
   newImages?: Array<{
     path: string;
   }>;
@@ -38,19 +42,15 @@ class UpdateOrphanageImagesService {
       orphanage.id,
     );
 
-    console.log(oldImages);
+    const OldImages = JSON.parse(oldImages) as Image[];
 
-    if (oldImages.length === images.length && newImages.length === 0) {
+    if (OldImages.length === images.length && newImages.length === 0) {
       throw new AppError('No images to update');
     }
 
     const imagesPaths = images.map(img => img.path);
 
-    const oldImagesPaths = oldImages.map(img => {
-      const [, path] = img.split('files/');
-
-      return path;
-    });
+    const oldImagesPaths = OldImages.map(img => img.path);
 
     const deletedImages = imagesPaths.filter(
       img => !oldImagesPaths.includes(img),
